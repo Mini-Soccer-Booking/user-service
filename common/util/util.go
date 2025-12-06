@@ -1,12 +1,12 @@
 package util
 
 import (
+	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
+	_ "github.com/spf13/viper/remote"
 	"os"
 	"reflect"
 	"strconv"
-
-	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
 )
 
 func BindFromJson(dest any, filename, path string) error {
@@ -57,8 +57,6 @@ func SetEnvFromConsulKV(v *viper.Viper) error {
 			val = strconv.Itoa(int(valOf.Float()))
 		case reflect.Bool:
 			val = strconv.FormatBool(valOf.Bool())
-		default:
-			panic("unsupported type")
 		}
 
 		err = os.Setenv(k, val)

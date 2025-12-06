@@ -24,6 +24,10 @@ type IUserRepository interface {
 	FindByUUID(context.Context, string) (*models.User, error)
 }
 
+func NewUserRepository(db *gorm.DB) IUserRepository {
+	return &UserRepository{db: db}
+}
+
 func (u UserRepository) Register(ctx context.Context, request *dto.RegisterRequest) (*models.User, error) {
 	user := models.User{
 		UUID:        uuid.New(),
@@ -47,7 +51,7 @@ func (u UserRepository) Update(ctx context.Context, request *dto.UpdateRequest, 
 	user := models.User{
 		Name:        request.Name,
 		Username:    request.Username,
-		Password:    request.Password,
+		Password:    *request.Password,
 		PhoneNumber: request.PhoneNumber,
 		Email:       request.Email,
 	}
@@ -104,8 +108,4 @@ func (u UserRepository) FindByUUID(ctx context.Context, uuid string) (*models.Us
 		return nil, errWrap.WrapError(errConstant.ErrSQLError)
 	}
 	return &user, nil
-}
-
-func NewUserRepository(db *gorm.DB) IUserRepository {
-	return &UserRepository{db: db}
 }

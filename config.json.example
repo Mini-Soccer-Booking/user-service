@@ -1,0 +1,20 @@
+{
+  "port": 8001,
+  "appName": "user-service",
+  "appEnv": "local",
+  "signatureKey": "",
+  "database": {
+    "port": 5433,
+    "name": "",
+    "username": "",
+    "password": "",
+    "maxOpenConnection": 10,
+    "maxLifetimeConnection": 10,
+    "maxIdleConnection": 10,
+    "maxIdleTime": 10
+  },
+  "rateLimiterMaxRequest": 1000,
+  "rateLimiterTimeSecond": 60,
+  "jwtSecretKey": "",
+  "jwtExpirationTime": 1440
+}

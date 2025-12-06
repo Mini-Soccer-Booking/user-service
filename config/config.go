@@ -1,10 +1,10 @@
 package config
 
 import (
+	"github.com/sirupsen/logrus"
+	_ "github.com/spf13/viper/remote"
 	"os"
 	"user-service/common/util"
-
-	"github.com/sirupsen/logrus"
 )
 
 var Config AppConfig
@@ -22,15 +22,15 @@ type AppConfig struct {
 }
 
 type Database struct {
-	Host                  string `json:"host"`
-	Port                  int    `json:"port"`
-	Name                  string `json:"name"`
-	Username              string `json:"username"`
-	Password              string `json:"password"`
-	MaxOpenConnections    int    `json:"maxOpenConnections"`
-	MaxLifeTimeConnection int    `json:"maxLifeTimeConnection"`
-	MaxIdleConnections    int    `json:"maxIdleConnections"`
-	MaxIdleTime           int    `json:"maxIdleTime"`
+	Host                   string `json:"host"`
+	Port                   int    `json:"port"`
+	Name                   string `json:"name"`
+	Username               string `json:"username"`
+	Password               string `json:"password"`
+	MaxOpenConnections     int    `json:"maxOpenConnections"`
+	MaxLifeTimeConnections int    `json:"maxLifeTimeConnections"`
+	MaxIdleConnections     int    `json:"maxIdleConnections"`
+	MaxIdleTime            int    `json:"maxIdleTime"`
 }
 
 func Init() {
